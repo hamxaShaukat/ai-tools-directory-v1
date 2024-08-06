@@ -1,5 +1,4 @@
 // app/layout.tsx or app/RootLayout.tsx (depending on your project structure)
-import { PersistProvider } from "@/lib/Store/PersistProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Providers } from "./Provider";
