@@ -141,7 +141,7 @@ const AdminListComponent = () => {
   };
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = all_admins?.slice(indexOfFirstItem, indexOfLastItem);
+
 
   if (isLoading || myLoad)
     return (
@@ -160,6 +160,7 @@ const AdminListComponent = () => {
       </div>
     );
   if (isError) return <div>Error: {error.message}</div>;
+  const currentItems = all_admins?.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div className="m-8">

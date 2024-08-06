@@ -147,7 +147,6 @@ const NonAdminListComponent = () => {
   };
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = non_admins.slice(indexOfFirstItem, indexOfLastItem);
   if (isLoading || myLoad)
     return (
       <div className="h-screen flex items-center justify-center gap-x-4">
@@ -164,7 +163,7 @@ const NonAdminListComponent = () => {
         />
       </div>
     );
-
+    const currentItems = non_admins.slice(indexOfFirstItem, indexOfLastItem);
   return (
     <div className="m-8">
       <Card x-chunk="dashboard-05-chunk-3">
