@@ -18,10 +18,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/components/ui/use-toast";
 import axios from "axios";
-import Swal from "sweetalert2";
+import dynamic from 'next/dynamic';
 import { Badge } from "@/components/ui/badge";
 import { TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
+
+
+// Dynamically import SweetAlert2
+// const Swal = dynamic(() => import('sweetalert2'), { ssr: false });
 
 const profileFormSchemaAdmin = z.object({
   username: z
@@ -38,13 +44,7 @@ const profileFormSchemaAdmin = z.object({
     })
     .email(),
   bio: z.string().max(160).min(4),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      })
-    )
-    .optional(),
+  authority: z.string(),
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchemaAdmin>;
@@ -52,10 +52,6 @@ type ProfileFormValues = z.infer<typeof profileFormSchemaAdmin>;
 // This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
   bio: "I own a computer.",
-  urls: [
-    { value: "https://shadcn.com" },
-    { value: "http://twitter.com/shadcn" },
-  ],
 };
 
 export default function ProfileFormAdmin() {
@@ -67,10 +63,11 @@ export default function ProfileFormAdmin() {
     mode: "onChange",
   });
 
-  const { fields, append } = useFieldArray({
-    name: "urls",
-    control: form.control,
-  });
+  useEffect(() => {
+    if (!session?.user) {
+      router.push("/register");
+    }
+  }, [session, router]);
 
   async function onSubmit(data: ProfileFormValues) {
     try {
@@ -112,6 +109,7 @@ export default function ProfileFormAdmin() {
       console.log(error);
     }
   }
+
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault(); // Prevent default form submission
     try {
@@ -143,11 +141,10 @@ export default function ProfileFormAdmin() {
       console.log(error);
     }
   };
+
   if (!session?.user) {
-    router.push("/register");
     return null;
   }
-
 
   return (
     <Form {...form}>
@@ -163,7 +160,7 @@ export default function ProfileFormAdmin() {
               </FormControl>
               <FormDescription>
                 This is your public display name. It can be your real name or a
-                pseudonym. You can it whenever you need.
+                pseudonym. You can change it whenever you need.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -210,7 +207,7 @@ export default function ProfileFormAdmin() {
         />
         <FormField
           control={form.control}
-          name="bio"
+          name="authority"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Role</FormLabel>

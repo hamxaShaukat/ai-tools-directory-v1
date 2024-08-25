@@ -79,7 +79,7 @@ export default function Showcase() {
             className="group bg-white relative overflow-hidden rounded-lg shadow-sm transition-all hover:scale-[1.02] hover:shadow-md"
             onClick={() => handleItemClick(tool.title)}
           >
-            <Link href="#" className="absolute inset-0 z-10" prefetch={false}>
+            <Link href="/" className="absolute inset-0 z-10" prefetch={false}>
               <span className="sr-only">View</span>
             </Link>
             <div className="relative w-full h-48"> {/* Set height for uniform size */}

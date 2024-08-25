@@ -67,7 +67,7 @@ const DirectoryPage: React.FC<DirectoryPageProps> = ({
             <p className="text-sm text-muted-foreground">{description}</p>
             <h2 className="text-lg font-semibold">Category</h2>
             <Link
-              href="#"
+              href='/'
               className="bg-muted rounded-lg p-4 flex flex-col items-center gap-2 hover:bg-accent hover:text-accent-foreground transition-colors"
               prefetch={false}
             >

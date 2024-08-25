@@ -22,6 +22,7 @@ import { signOut, useSession } from "next-auth/react";
 import { Badge } from "@/components/ui/badge";
 import { TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 // import { signOut } from "@/auth";
 
 const profileFormSchema = z.object({
@@ -46,13 +47,7 @@ const profileFormSchema = z.object({
       })
     )
     .optional(),
-  urls: z
-    .array(
-      z.object({
-        value: z.string().url({ message: "Please enter a valid URL." }),
-      })
-    )
-    .optional(),
+  
 });
 
 type ProfileFormValues = z.infer<typeof profileFormSchema>;
@@ -60,10 +55,7 @@ type ProfileFormValues = z.infer<typeof profileFormSchema>;
 // This can come from your database or API.
 const defaultValues: Partial<ProfileFormValues> = {
   bio: "I own a computer.",
-  urls: [
-    { value: "https://shadcn.com" },
-    { value: "http://twitter.com/shadcn" },
-  ],
+
 };
 
 export default function ProfileFormUser() {
@@ -77,10 +69,7 @@ export default function ProfileFormUser() {
     mode: "onChange",
   });
 
-  const { fields, append } = useFieldArray({
-    name: "urls",
-    control: form.control,
-  });
+  
 
   async function onSubmit(data: ProfileFormValues) {
     try {
@@ -154,10 +143,11 @@ export default function ProfileFormUser() {
       console.log(error);
     }
   };
-  if (!session?.user) {
-    router.push("/register");
-    return null;
-  }
+  useEffect(() => {
+    if (!session?.user) {
+      router.push("/register");
+    }
+  }, [session, router]);
 
   return (
     <Form {...form}>
