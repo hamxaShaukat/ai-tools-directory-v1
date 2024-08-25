@@ -1,13 +1,12 @@
 import ToolListAdmin from '@/components/Dashboard/admin_d_Components/a_ToolList'
 import React from 'react'
 
-type Props = {}
 
-const ToolPageAdmin = (props: Props) => {
+const ToolPageAdmin = () => {
   let toolsnum=10;
   return (
     <div>
-      <ToolListAdmin key="/admin/tools" />
+      <ToolListAdmin/>
     </div>
   )
 }

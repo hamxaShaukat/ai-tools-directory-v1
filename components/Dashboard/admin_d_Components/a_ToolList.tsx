@@ -238,7 +238,10 @@ const ToolsListAdmin = () => {
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = tools_pending.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = Array.isArray(tools_pending)
+  ? tools_pending.slice(indexOfFirstItem, indexOfLastItem)
+  : [];
+
 
   if (isLoading || myLoad)
     return (
