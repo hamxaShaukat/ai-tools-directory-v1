@@ -120,16 +120,19 @@ const Gallery: React.FC = () => {
   const selectedItem = filteredItems.find((item) => item.id === selectedId);
 
   useEffect(() => {
-    if (selectedId !== null) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
+    if (typeof document !== 'undefined') {
+      if (selectedId !== null) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'auto';
+      }
+  
+      return () => {
+        document.body.style.overflow = 'auto';
+      };
     }
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
   }, [selectedId]);
+  
 
   return (
     <div className="mt-8 px-4 w-full">
