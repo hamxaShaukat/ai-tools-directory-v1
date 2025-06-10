@@ -72,34 +72,43 @@ export default function Showcase() {
         All Tools below
       </div>
       <Separator className="my-4" />
-      <div className="container grid gap-8 px-4 md:grid-cols-2 lg:grid-cols-4 md:px-6">
-        {filteredItems.map((tool: ToolsForShowcase) => (
-          <div
-            key={tool.id}
-            className="group bg-white relative overflow-hidden rounded-lg shadow-sm transition-all hover:scale-[1.02] hover:shadow-md"
-            onClick={() => handleItemClick(tool.title)}
-          >
-            <Link href="/" className="absolute inset-0 z-10" prefetch={false}>
-              <span className="sr-only">View</span>
-            </Link>
-            <div className="relative w-full h-48"> {/* Set height for uniform size */}
-              <Image
-                src={tool.logo}
-                alt={tool.title}
-                layout="fill" // Fill the container
-                objectFit="cover" // Ensure the image covers the container
-                className="transition-opacity group-hover:opacity-80"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="text-lg font-semibold tracking-tight">
-                {tool.title}
-              </h3>
-              <p className="text-muted-foreground">{tool.bio}</p>
-            </div>
+      <div className="container px-4 md:px-6">
+        {filteredItems.length === 0 ? (
+          <div className="text-center text-xl text-gray-500 py-12">
+            No tools are available at the moment. Please check back soon.
           </div>
-        ))}
+        ) : (
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {filteredItems.map((tool: ToolsForShowcase) => (
+              <div
+                key={tool.id}
+                className="group bg-white relative overflow-hidden rounded-lg shadow-sm transition-all hover:scale-[1.02] hover:shadow-md"
+                onClick={() => handleItemClick(tool.title)}
+              >
+                <Link href="/" className="absolute inset-0 z-10" prefetch={false}>
+                  <span className="sr-only">View</span>
+                </Link>
+                <div className="relative w-full h-48">
+                  <Image
+                    src={tool.logo}
+                    alt={tool.title}
+                    layout="fill"
+                    objectFit="cover"
+                    className="transition-opacity group-hover:opacity-80"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold tracking-tight">
+                    {tool.title}
+                  </h3>
+                  <p className="text-muted-foreground">{tool.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
+  
 }

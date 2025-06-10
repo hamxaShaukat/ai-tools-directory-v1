@@ -8,10 +8,11 @@ export async function GET() {
   if (!session) {
     return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
   }
-
+  console.log(session.user.email)
   const user = await prisma.user.findUnique({
     where: { email: session.user?.email as string },
   });
+  console.log(user)
   if (!user) {
     return NextResponse.json({ error: 'User not found' }, { status: 404 });
   }
