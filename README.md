@@ -33,8 +33,8 @@
 ### **1. Clone & Install**  
 ```bash
 # Download and unzip the project
-git clone https://github.com/your-repo/hamu-toolkit.git
-cd hamu-toolkit
+git clone https://github.com/hamxaShaukat/ai-tools-directory-v1.git
+cd ai-tools-directory-v1
 npm install
 ```
 
