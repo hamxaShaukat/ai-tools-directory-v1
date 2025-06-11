@@ -493,7 +493,7 @@ const WaitingArea = () => {
         </Tabs>
       </main>
       <PaginationSection
-          totalPosts={tools_pending.length}
+          totalPosts={tools_pending?.length}
           postsPerPage={itemsPerPage}
           currentPage={currentPage}
           setCurrentPage={setCurrentPage}
