@@ -1,8 +1,6 @@
 # 🛠️ Hamu Toolkit - AI Tools Marketplace  
 
-*A Next.js-powered directory where users list AI tools for sale, with role-based access control (Admin/User).*  
-
-![Hamu Toolkit Preview](screenshots/preview.png) *(Replace with actual screenshot)*  
+*A Next.js-powered directory where users list AI tools for sale, with role-based access control (Admin/User).*   
 
 ## ▶ **Live Demo**  
 🎥 **[Video Walkthrough](https://youtu.be/rCHsX_Z9nGk?feature=shared)** *(Showcase tool submission, admin approval flow, etc.)*  
