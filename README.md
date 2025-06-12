@@ -5,7 +5,7 @@
 ![Hamu Toolkit Preview](screenshots/preview.png) *(Replace with actual screenshot)*  
 
 ## ▶ **Live Demo**  
-🎥 **[Video Walkthrough](https://youtube.com/your-link)** *(Showcase tool submission, admin approval flow, etc.)*  
+🎥 **[Video Walkthrough](https://youtu.be/rCHsX_Z9nGk?feature=shared)** *(Showcase tool submission, admin approval flow, etc.)*  
 
 ---
 
